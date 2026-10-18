@@ -30,7 +30,7 @@ def fetch_weather(lat: float, lon: float) -> dict:
         "hourly": ",".join(HOURLY_VARS),
         "timezone": "UTC",
         "past_days": 1,
-        "forecast_days": 1,
+        "forecast_days": 16,
     }
     r = requests.get(URL, params=params, timeout=30)
     r.raise_for_status()
@@ -67,8 +67,8 @@ def main():
                 (city, Jsonb(data)),
             )
             print(f"{city}: {len(data['hourly']['time'])} hours loaded")
-        for row in get_all_rows(cur):
-            print(row)
+        # for row in get_all_rows(cur):
+        #     print(row)
 
 
 if __name__ == "__main__":
