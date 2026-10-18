@@ -10,7 +10,6 @@ load_dotenv()
 
 st.set_page_config(page_title="German Weather", layout="wide")
 
-
 @st.cache_data(ttl=300)  # re-query at most every 5 minutes
 def query(sql) -> pd.DataFrame:
     with psycopg.connect(os.environ["DB_CONNECT_STR"]) as conn, conn.cursor() as cur:
@@ -69,7 +68,6 @@ h = hourly[
 
 # Charts/Stats
 st.title("Weather Data")
-st.caption("Data: Open-Meteo.com · pipeline: Python → Postgres → dbt → Streamlit")
 
 if d.empty:
     st.info("No data for this selection.")
